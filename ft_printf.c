@@ -5,21 +5,20 @@ static void	handle_format(const char *format, va_list args, int i, int *len)
 	if (format[i + 1] == 'd' || format[i + 1] == 'i')
 		ft_putnbr(va_arg(args, int), len);
 	else if (format[i + 1] == 'u')
-		ft_putnbr_unsigned(va_arg(args, unsigned int), len);
+		ft_putnbr(va_arg(args, unsigned int), len);
 	else if (format[i + 1] == 'c')
 		ft_putchar(va_arg(args, int), len);
 	else if (format[i + 1] == 's')
 		ft_putstr(va_arg(args, char *), len);
 	else if (format[i + 1] == '%')
 		ft_putchar('%', len);
-	else if(format[i + 1] == 'p')
-		ft_helper(va_arg(args,void *),len);
-	else if(format[i + 1] == 'X')
-		;
-	else if(format[i + 1] == 'x')
-		;
-
-}
+	else if (format[i + 1] == 'p')
+		ft_helper(va_arg(args, void *), len);
+	else if (format[i + 1] == 'x')
+		ft_puthex(va_arg(args, unsigned int), len, HEX_L);
+	else if (format[i + 1] == 'X')
+		ft_puthex(va_arg(args, unsigned int), len, HEX_B);
+	}
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;

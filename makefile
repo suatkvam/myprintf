@@ -1,23 +1,24 @@
-Name =
+NAME = ft_printf.a
 
-src=
+SRC = ft_pointer_adress.c ft_printf.c ft_putchar.c \
+	  ft_puthex.c ft_putnbr.c ft_putstr.c
 
-libft_src= .find libft -name "*.c" | tr '\n' ' '
-libft= ./libft/libft.a
-obj= $(src:.c=.o)
+OBJ = $(SRC:.c=.o)
 
-all: $(Name)
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 
-$(NAME): $(OBJECT_FILE) $(libft)
-	cc -wall -wextra -werror 
-	
-$(libft):$(libft_src)
-	make -c libft
+all: $(NAME)
 
-
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
 
 clean:
-	rm -f $(obj)
+	rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(Name)
+	rm -f $(NAME)
+
+re: fclean all
+
+.phony: all clean fclean re

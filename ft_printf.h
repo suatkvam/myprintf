@@ -11,9 +11,9 @@
 int		ft_printf(const char *format, ...);
 void	ft_putchar(char c, int *len);
 void	ft_putnbr(int n, int *len);
-void	ft_unsigned_putnbr(unsigned int n, int *len);
 void	ft_putstr(char *s, int *len);
-void pointer_adress(size_t number, int *len, char *base);
+void	ft_pointer_adress(size_t number, int *len, char *base);
+void	ft_helper(void *ptr, int *len);
+void	ft_puthex(int number, int *len, char *base);
 
-
-#endif // FT_PRINTF_H
+#endif

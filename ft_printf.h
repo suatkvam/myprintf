@@ -5,12 +5,15 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-int		ft_printf(const char *, ...);
-void	ft_putnbr(int n);
-void	ft_unsigned_putnbr( unsigned int n);
-void	ft_putchar(char c);
-size_t	ft_strlen(const char *s);
-void	ft_putstr(char *s);
+# define HEX_B "0123456789ABCDEF"
+# define HEX_L "0123456789abcdef"
+
+int		ft_printf(const char *format, ...);
+void	ft_putchar(char c, int *len);
+void	ft_putnbr(int n, int *len);
+void	ft_unsigned_putnbr(unsigned int n, int *len);
+void	ft_putstr(char *s, int *len);
+void pointer_adress(size_t number, int *len, char *base);
 
 
-#endif FT_PRINTF_H
+#endif // FT_PRINTF_H

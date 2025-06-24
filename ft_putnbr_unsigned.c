@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthex.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_unsigned.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akivam <akivam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/24 09:14:48 by akivam            #+#    #+#             */
-/*   Updated: 2025/06/24 09:28:03 by akivam           ###   ########.fr       */
+/*   Created: 2025/06/24 09:21:47 by akivam            #+#    #+#             */
+/*   Updated: 2025/06/24 09:26:00 by akivam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_puthex(unsigned int number, int *len, char *base)
+void	ft_putnbr_unsigned(unsigned int n, int *len)
 {
-	if (number >= 16)
-	{
-		if (number >= 16)
-			ft_puthex(number / 16, len, base);
-		ft_putchar(base[number % 16], len);
-	}
-	else
-		ft_putchar(base[number % 16], len);
+	if (n >= 10)
+		ft_putnbr_unsigned(n / 10, len);
+	ft_putchar(((n % 10) + '0'), len);
 }

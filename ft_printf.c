@@ -6,7 +6,7 @@
 /*   By: akivam <akivam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 21:40:04 by akivam            #+#    #+#             */
-/*   Updated: 2025/06/24 09:17:15 by akivam           ###   ########.fr       */
+/*   Updated: 2025/06/24 09:38:13 by akivam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	handle_format(const char *format, va_list args, int i, int *len)
 	if (format[i + 1] == 'd' || format[i + 1] == 'i')
 		ft_putnbr(va_arg(args, int), len);
 	else if (format[i + 1] == 'u')
-		ft_putnbr(va_arg(args, unsigned int), len);
+		ft_putnbr_unsigned(va_arg(args, unsigned int), len);
 	else if (format[i + 1] == 'c')
 		ft_putchar(va_arg(args, int), len);
 	else if (format[i + 1] == 's')
@@ -30,6 +30,8 @@ static void	handle_format(const char *format, va_list args, int i, int *len)
 		ft_puthex(va_arg(args, unsigned int), len, HEX_L);
 	else if (format[i + 1] == 'X')
 		ft_puthex(va_arg(args, unsigned int), len, HEX_B);
+	else
+		ft_putchar(format[i + 1], len);
 }
 
 int	ft_printf(const char *format, ...)
@@ -43,10 +45,8 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	while (format[i])
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && format[i + 1])
 		{
-			if (format[i + 1] == '\0')
-				return (-1);
 			handle_format(format, args, i, &len);
 			i += 2;
 		}

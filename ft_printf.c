@@ -6,14 +6,31 @@
 /*   By: akivam <akivam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 21:40:04 by akivam            #+#    #+#             */
-/*   Updated: 2025/06/24 09:38:13 by akivam           ###   ########.fr       */
+/*   Updated: 2025/06/24 17:50:01 by akivam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "printf.h"
 
-static void	handle_format(const char *format, va_list args, int i, int *len)
+static char	*ft_strchr(const char *s, int c)
 {
+	char	*str;
+	size_t	i;
+
+	str = (char *)s;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if ((unsigned char)(str[i]) == (unsigned char)c)
+			return (str + i);
+		i++;
+	}
+	if ((unsigned char)c == '\0')
+		return (str + i);
+	return (NULL);
+}
+static void	handle_format(const char *format, va_list args, int i, int *len)
+{	
 	if (format[i + 1] == 'd' || format[i + 1] == 'i')
 		ft_putnbr(va_arg(args, int), len);
 	else if (format[i + 1] == 'u')
@@ -45,10 +62,16 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	while (format[i])
 	{
-		if (format[i] == '%' && format[i + 1])
+		if (format[i] == '%')
 		{
-			handle_format(format, args, i, &len);
-			i += 2;
+			if(!format[i + 1])
+				return -1;
+			if(ft_strchr("cspdiuxX%",format[i + 1]))
+			{
+				handle_format(format, args, i, &len);
+				i += 1;
+			}
+			i++;
 		}
 		else
 		{

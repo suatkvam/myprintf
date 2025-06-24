@@ -6,11 +6,11 @@
 /*   By: akivam <akivam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:14:58 by akivam            #+#    #+#             */
-/*   Updated: 2025/06/24 09:16:16 by akivam           ###   ########.fr       */
+/*   Updated: 2025/06/24 10:15:22 by akivam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "printf.h"
 
 void	ft_putnbr(int n, int *len)
 {

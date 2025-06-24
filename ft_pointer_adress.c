@@ -6,13 +6,13 @@
 /*   By: akivam <akivam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 21:39:44 by akivam            #+#    #+#             */
-/*   Updated: 2025/06/24 09:13:57 by akivam           ###   ########.fr       */
+/*   Updated: 2025/06/24 10:15:10 by akivam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "printf.h"
 
-void	ft_pointer_adress(size_t number, int *len, char *base)
+static void	ft_pointer_adress(size_t number, int *len, char *base)
 {
 	if (number >= 16)
 		ft_pointer_adress(number / 16, len, base);

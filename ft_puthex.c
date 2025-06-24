@@ -6,11 +6,11 @@
 /*   By: akivam <akivam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:14:48 by akivam            #+#    #+#             */
-/*   Updated: 2025/06/24 09:28:03 by akivam           ###   ########.fr       */
+/*   Updated: 2025/06/24 10:15:31 by akivam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "printf.h"
 
 void	ft_puthex(unsigned int number, int *len, char *base)
 {

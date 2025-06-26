@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printf.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akivam <akivam@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/26 09:18:23 by akivam            #+#    #+#             */
+/*   Updated: 2025/06/26 09:18:24 by akivam           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PRINTF_H
 # define PRINTF_H
 
@@ -13,7 +25,7 @@ void	ft_putchar(char c, int *len);
 void	ft_putnbr(int n, int *len);
 void	ft_putnbr_unsigned(unsigned int n, int *len);
 void	ft_putstr(char *s, int *len);
-void	ft_helper(void *ptr, int *len);
+void	ft_print_pointer_address(void *ptr, int *len);
 void	ft_puthex(unsigned int number, int *len, char *base);
 
 #endif

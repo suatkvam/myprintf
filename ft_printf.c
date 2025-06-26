@@ -1,42 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akivam <akivam@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/26 09:16:47 by akivam            #+#    #+#             */
+/*   Updated: 2025/06/26 09:47:27 by akivam           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
 
-static char	*ft_strchr(const char *s, int c)
-{
-	char	*str;
-	size_t	i;
-
-	str = (char *)s;
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if ((unsigned char)(str[i]) == (unsigned char)c)
-			return (str + i);
-		i++;
-	}
-	if ((unsigned char)c == '\0')
-		return (str + i);
-	return (NULL);
-}
 static void	handle_format(const char *format, va_list args, int i, int *len)
-{	
-	if (format[i + 1] == 'd' || format[i + 1] == 'i')
+{
+	char	flag;
+
+	flag = format[i + 1];
+	if (flag == 'd' || flag == 'i')
 		ft_putnbr(va_arg(args, int), len);
-	else if (format[i + 1] == 'u')
+	else if (flag == 'u')
 		ft_putnbr_unsigned(va_arg(args, unsigned int), len);
-	else if (format[i + 1] == 'c')
+	else if (flag == 'c')
 		ft_putchar(va_arg(args, int), len);
-	else if (format[i + 1] == 's')
+	else if (flag == 's')
 		ft_putstr(va_arg(args, char *), len);
-	else if (format[i + 1] == '%')
+	else if (flag == '%')
 		ft_putchar('%', len);
-	else if (format[i + 1] == 'p')
-		ft_helper(va_arg(args, void *), len);
-	else if (format[i + 1] == 'x')
+	else if (flag == 'p')
+		ft_print_pointer_address(va_arg(args, void *), len);
+	else if (flag == 'x')
 		ft_puthex(va_arg(args, unsigned int), len, HEX_L);
-	else if (format[i + 1] == 'X')
+	else if (flag == 'X')
 		ft_puthex(va_arg(args, unsigned int), len, HEX_B);
 	else
-		ft_putchar(format[i + 1], len);
+		ft_putchar(flag, len);
 }
 
 int	ft_printf(const char *format, ...)
@@ -52,20 +50,16 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if(!format[i + 1])
-				return -1;
-			if(ft_strchr("cspdiuxX%",format[i + 1]))
+			if (!format[i + 1])
 			{
-				handle_format(format, args, i, &len);
-				i += 1;
+				va_end(args);
+				return (-1);
 			}
-			i++;
+			handle_format(format, args, i, &len);
+			i += 2;
+			continue ;
 		}
-		else
-		{
-			ft_putchar(format[i], &len);
-			i++;
-		}
+		ft_putchar(format[i++], &len);
 	}
 	va_end(args);
 	return (len);
